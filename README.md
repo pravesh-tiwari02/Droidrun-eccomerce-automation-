@@ -23,4 +23,31 @@ The system works without official APIs by leveraging DroidRun-based UI automatio
 
 ---
 
-## 🏗 Architecture
+
+## ⚙️ Tech Stack
+- DroidRun
+- Android Debug Bridge (ADB)
+- Python
+- Android UI Automation
+
+---
+
+## 📌 Supported Platforms
+- Amazon
+- Flipkart
+- Blinkit
+- Zepto
+
+---
+
+## 📽 Demo
+YouTube Demo: https://youtu.be/VYgodmWkhRo
+
+---
+
+## 📈 Future Enhancements
+- AI-based product matching
+- Price-drop alerts
+- User approval before checkout
+- Support for additional platforms
+
