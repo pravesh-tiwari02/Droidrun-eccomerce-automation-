@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriceHunter - Smart Price Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🎯</span>
+                <h1>PriceHunter</h1>
+            </div>
+            <p class="tagline">Find the best deals across Flipkart, Amazon, Blinkit & Zepto</p>
+        </header>
+
+        <main>
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-box glass-card">
+                    <div class="search-icon">🔍</div>
+                    <input 
+                        type="text" 
+                        id="productInput" 
+                        placeholder="Enter product name (e.g., 'Milk 1L', 'Rice 5kg')"
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn" class="btn-primary">
+                        <span class="btn-text">Hunt Prices</span>
+                        <span class="btn-loader hidden">
+                            <div class="loader"></div>
+                        </span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Status Section -->
+            <section id="statusSection" class="status-section hidden">
+                <div class="status-card glass-card">
+                    <div class="status-icon">
+                        <div class="pulse-ring"></div>
+                        <span>📱</span>
+                    </div>
+                    <div class="status-content">
+                        <h3 id="statusTitle">Searching...</h3>
+                        <p id="statusMessage">Connecting to your phone...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section hidden">
+                <h2 class="section-title">Price Comparison</h2>
+                
+                <div class="results-grid">
+                    <!-- Flipkart Card -->
+                    <div class="price-card glass-card" data-app="flipkart">
+                        <div class="card-header flipkart">
+                            <div class="app-logo">
+                                <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg" alt="Flipkart" onerror="this.parentElement.innerHTML='🛒'">
+                            </div>
+                            <span class="app-name">Flipkart</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="price-loading">
+                                <div class="skeleton"></div>
+                            </div>
+                            <div class="price-content hidden">
+                                <span class="currency">₹</span>
+                                <span class="price-value">--</span>
+                            </div>
+                            <p class="product-name">Searching...</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="status-badge pending">Pending</span>
+                            <button class="btn-buy hidden" data-app="flipkart">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Amazon Card -->
+                    <div class="price-card glass-card" data-app="amazon">
+                        <div class="card-header amazon">
+                            <div class="app-logo">🛍️</div>
+                            <span class="app-name">Amazon</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="price-loading">
+                                <div class="skeleton"></div>
+                            </div>
+                            <div class="price-content hidden">
+                                <span class="currency">₹</span>
+                                <span class="price-value">--</span>
+                            </div>
+                            <p class="product-name">Searching...</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="status-badge pending">Pending</span>
+                            <button class="btn-buy hidden" data-app="amazon">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Blinkit Card -->
+                    <div class="price-card glass-card" data-app="blinkit">
+                        <div class="card-header blinkit">
+                            <div class="app-logo">⚡</div>
+                            <span class="app-name">Blinkit</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="price-loading">
+                                <div class="skeleton"></div>
+                            </div>
+                            <div class="price-content hidden">
+                                <span class="currency">₹</span>
+                                <span class="price-value">--</span>
+                            </div>
+                            <p class="product-name">Searching...</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="status-badge pending">Pending</span>
+                            <button class="btn-buy hidden" data-app="blinkit">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Zepto Card -->
+                    <div class="price-card glass-card" data-app="zepto">
+                        <div class="card-header zepto">
+                            <div class="app-logo">🚀</div>
+                            <span class="app-name">Zepto</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="price-loading">
+                                <div class="skeleton"></div>
+                            </div>
+                            <div class="price-content hidden">
+                                <span class="currency">₹</span>
+                                <span class="price-value">--</span>
+                            </div>
+                            <p class="product-name">Searching...</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="status-badge pending">Pending</span>
+                            <button class="btn-buy hidden" data-app="zepto">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Deal Banner -->
+                <div id="bestDeal" class="best-deal glass-card hidden">
+                    <div class="deal-icon">🏆</div>
+                    <div class="deal-content">
+                        <h3>Best Deal Found!</h3>
+                        <p><span id="bestApp">--</span> has the lowest price at <span id="bestPrice">₹--</span></p>
+                    </div>
+                    <button id="buyBestBtn" class="btn-primary btn-glow">
+                        Buy from <span id="bestAppBtn">--</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Order Confirmation Modal -->
+        <div id="orderModal" class="modal hidden">
+            <div class="modal-content glass-card">
+                <div class="modal-header">
+                    <h2>⚠️ Confirm Order</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>You are about to place a <strong>Cash on Delivery</strong> order on <strong id="orderApp">--</strong>.</p>
+                    <p class="warning">This will place a REAL order using your default address.</p>
+                    <div class="order-details">
+                        <div class="detail-row">
+                            <span>Product:</span>
+                            <span id="orderProduct">--</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Payment:</span>
+                            <span>Cash on Delivery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelOrder" class="btn-secondary">Cancel</button>
+                    <button id="confirmOrder" class="btn-primary btn-danger">Place Order</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Status Modal -->
+        <div id="orderStatusModal" class="modal hidden">
+            <div class="modal-content glass-card">
+                <div class="modal-header">
+                    <h2 id="orderStatusTitle">📦 Placing Order...</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="order-progress">
+                        <div class="progress-spinner"></div>
+                        <p id="orderStatusMsg">Automating order on your phone...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Powered by DroidRun AI 🤖 • Your phone does the shopping</p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
